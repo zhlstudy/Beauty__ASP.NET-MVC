@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Beautydemo.Models.tb_user>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>首页</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.confirmpassword)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.emil)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.confirmpassword)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.emil)
+        </td>
+        <td>
+            @Html.ActionLink("编辑", "Edit", new { id=item.uid }) |
+            @Html.ActionLink("详情", "Details", new { id=item.uid }) |
+            @Html.ActionLink("删除", "Delete", new { id=item.uid })
+        </td>
+    </tr>
+}
+
+</table>

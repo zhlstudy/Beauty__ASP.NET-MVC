@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BeautyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tb_admin">
+    <Key>
+      <PropertyRef Name="aid" />
+    </Key>
+    <Property Name="aid" Type="int" Nullable="false" />
+    <Property Name="aname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" />
+    <Property Name="confirmpassword" Type="varchar" MaxLength="50" />
+    <Property Name="tel" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tb_cart">
+    <Key>
+      <PropertyRef Name="cid" />
+    </Key>
+    <Property Name="cid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="pid" Type="int" Nullable="false" />
+    <Property Name="pname" Type="varchar" MaxLength="50" />
+    <Property Name="price" Type="decimal" Precision="18" Scale="1" />
+    <Property Name="nums" Type="int" />
+    <Property Name="photo" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tb_message">
+    <Key>
+      <PropertyRef Name="mid" />
+    </Key>
+    <Property Name="mid" Type="int" Nullable="false" />
+    <Property Name="title" Type="varchar" MaxLength="50" />
+    <Property Name="mess" Type="varchar" MaxLength="50" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="messdate" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tb_orderdetails">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="oid" Type="int" />
+    <Property Name="pid" Type="int" />
+    <Property Name="pname" Type="varchar" MaxLength="50" />
+    <Property Name="price" Type="decimal" Precision="18" Scale="1" />
+    <Property Name="nums" Type="int" />
+    <Property Name="photo" Type="varchar" MaxLength="50" />
+    <Property Name="state" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tb_orders">
+    <Key>
+      <PropertyRef Name="oid" />
+    </Key>
+    <Property Name="oid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="orderTime" Type="varchar" MaxLength="50" />
+    <Property Name="allPrice" Type="decimal" Precision="18" Scale="1" />
+    <Property Name="address" Type="varchar" MaxLength="50" />
+    <Property Name="tel" Type="varchar" MaxLength="50" />
+    <Property Name="pcounts" Type="int" />
+  </EntityType>
+  <EntityType Name="tb_product">
+    <Key>
+      <PropertyRef Name="pid" />
+    </Key>
+    <Property Name="pid" Type="int" Nullable="false" />
+    <Property Name="pname" Type="varchar" MaxLength="50" />
+    <Property Name="photo" Type="varchar" MaxLength="50" />
+    <Property Name="price" Type="decimal" Precision="18" Scale="1" />
+    <Property Name="pnums" Type="int" />
+    <Property Name="salenums" Type="int" />
+    <Property Name="state" Type="varchar" MaxLength="50" />
+    <Property Name="mess" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tb_user">
+    <Key>
+      <PropertyRef Name="uid" />
+    </Key>
+    <Property Name="uid" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="password" Type="varchar" MaxLength="50" />
+    <Property Name="confirmpassword" Type="varchar" MaxLength="50" />
+    <Property Name="address" Type="varchar" MaxLength="50" />
+    <Property Name="tel" Type="varchar" MaxLength="50" />
+    <Property Name="emil" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_tb_cart_tb_product">
+    <End Role="tb_product" Type="Self.tb_product" Multiplicity="1" />
+    <End Role="tb_cart" Type="Self.tb_cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_product">
+        <PropertyRef Name="pid" />
+      </Principal>
+      <Dependent Role="tb_cart">
+        <PropertyRef Name="pid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_orderdetails_tb_orders">
+    <End Role="tb_orders" Type="Self.tb_orders" Multiplicity="0..1" />
+    <End Role="tb_orderdetails" Type="Self.tb_orderdetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_orders">
+        <PropertyRef Name="oid" />
+      </Principal>
+      <Dependent Role="tb_orderdetails">
+        <PropertyRef Name="oid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_orderdetails_tb_product">
+    <End Role="tb_product" Type="Self.tb_product" Multiplicity="0..1" />
+    <End Role="tb_orderdetails" Type="Self.tb_orderdetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_product">
+        <PropertyRef Name="pid" />
+      </Principal>
+      <Dependent Role="tb_orderdetails">
+        <PropertyRef Name="pid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BeautyModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_admin" EntityType="Self.tb_admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_cart" EntityType="Self.tb_cart" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_message" EntityType="Self.tb_message" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_orderdetails" EntityType="Self.tb_orderdetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_orders" EntityType="Self.tb_orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_product" EntityType="Self.tb_product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_user" EntityType="Self.tb_user" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tb_cart_tb_product" Association="Self.FK_tb_cart_tb_product">
+      <End Role="tb_product" EntitySet="tb_product" />
+      <End Role="tb_cart" EntitySet="tb_cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_orderdetails_tb_orders" Association="Self.FK_tb_orderdetails_tb_orders">
+      <End Role="tb_orders" EntitySet="tb_orders" />
+      <End Role="tb_orderdetails" EntitySet="tb_orderdetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_orderdetails_tb_product" Association="Self.FK_tb_orderdetails_tb_product">
+      <End Role="tb_product" EntitySet="tb_product" />
+      <End Role="tb_orderdetails" EntitySet="tb_orderdetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

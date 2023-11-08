@@ -1,0 +1,60 @@
+﻿@model Beautydemo.Models.tb_message
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>留言详情</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.mid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mid)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mess)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mess)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.messdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.messdate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+   
+        @Html.ActionLink("返回评论", "Index", "Message", new { id = Model.mid }, "")
+    
+
+
+
+</p>

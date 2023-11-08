@@ -1,0 +1,55 @@
+﻿@model Beautydemo.Models.tb_admin
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>删除管理员</h2>
+
+<h3>你确定你要删除这个管理员?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.aname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.confirmpassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.confirmpassword)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tel)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("返回", "Index")
+        </div>
+    }
+</div>

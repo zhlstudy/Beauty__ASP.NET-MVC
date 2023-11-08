@@ -1,0 +1,55 @@
+﻿@model Beautydemo.Models.tb_message
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>删除评论</h2>
+
+<h3>你确定要删除该评论？</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mess)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mess)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.messdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.messdate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("返回", "Index")
+        </div>
+    }
+</div>

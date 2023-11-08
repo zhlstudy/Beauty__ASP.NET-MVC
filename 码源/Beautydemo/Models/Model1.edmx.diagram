@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e9580644283f42db9129124710774837" Name="Diagram1">
+        <EntityTypeShape EntityType="BeautyModel.sysdiagram" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeautyModel.tb_admin" Width="1.5" PointX="2.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeautyModel.tb_cart" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeautyModel.tb_message" Width="1.5" PointX="4.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeautyModel.tb_orderdetails" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeautyModel.tb_orders" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeautyModel.tb_product" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeautyModel.tb_user" Width="1.5" PointX="6.75" PointY="8.375" IsExpanded="true" />
+        <AssociationConnector Association="BeautyModel.FK_tb_cart_tb_product" ManuallyRouted="false" />
+        <AssociationConnector Association="BeautyModel.FK_tb_orderdetails_tb_orders" ManuallyRouted="false" />
+        <AssociationConnector Association="BeautyModel.FK_tb_orderdetails_tb_product" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,100 @@
+﻿@using Beautydemo.Models
+@using PagedList.Mvc;
+@model PagedList.IPagedList<tb_product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>产品首页</h2>
+
+
+@{
+    <div class="form-group">
+        @Html.Label("商品名", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.Editor("pname")
+            @Html.ActionLink("搜索", "Index")
+        </div>
+    </div>
+
+    if (Session["Role"] != null && Session["Role"].ToString() == "admin")
+    {
+       
+    <table class="table" style="width:42%">
+        <tr>
+            <td>
+                @Html.ActionLink("添加产品", "Create")
+            </td> 
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr style="width:391px">
+                <td rowspan="4">
+                    <img src="@item.photo" height="150" width="260px" />
+                </td>
+            </tr>
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.pname)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.ActionLink("编辑", "Edit", new { id = item.pid }, "")|
+                    @Html.ActionLink("删除", "Delete", new { id = item.pid }, "")
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    }
+    else
+    {
+        <table class="table" style="width:42%">
+            @foreach (var item in Model)
+            {
+                <tr style="width:391px">
+                    <td rowspan="4">
+                        <img src="@item.photo" height="150" width="260px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pname)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.price)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.ActionLink("详情", "Details", new { id = item.pid })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.ActionLink("加入购物车", "JoinCart", "Cart", new { id = item.pid }, "")
+                    <td>
+                </tr>
+            }
+
+        </table>
+
+    }
+}
+
+<div>
+    每页 @Model.PageSize 条记录，共 @Model.PageCount 页，当前第 @Model.PageNumber 页
+    @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page }))
+</div>

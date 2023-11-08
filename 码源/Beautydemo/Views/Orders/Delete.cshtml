@@ -1,0 +1,70 @@
+﻿@model Beautydemo.Models.tb_orders
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>删除订单</h2>
+
+<h3>你确定要删除订单嘛？</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.orderTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.orderTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.allPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.allPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.pcounts)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pcounts)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.tel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tel)
+        </dd>
+
+
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="删除" class="btn btn-default" /> |
+            @Html.ActionLink("返回", "Index")
+        </div>
+    }
+</div>

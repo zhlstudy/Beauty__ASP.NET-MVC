@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Beautydemo.Models.tb_orderdetails>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>订单详情</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nums)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.state)
+        </th>
+      
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nums)
+        </td>
+        <td>
+            <img src="@item.photo" height="60" width="100px" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.state)
+        </td>
+
+        <td>
+
+
+            @if (Session["Role"].ToString() == "admin")
+            {
+                @Html.ActionLink("详情", "Details", new { id = item.id })
+                @Html.Label("|");
+                @Html.ActionLink("删除", "Delete", new { id = item.id })
+            }
+            else
+            {
+                @Html.ActionLink("付款", "Details", new { id = item.id })
+            }
+
+        </td>
+    </tr>
+}
+
+</table>

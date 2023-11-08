@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Beautydemo.Models.tb_message>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>评论首页</h2>
+
+<p>
+    @Html.ActionLink("我要评论！", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.mid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mess)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.messdate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.mid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mess)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.messdate)
+        </td>
+        <td>
+            @if (Session["Role"].ToString() == "admin")
+            {
+                @Html.ActionLink("详情", "Details", new { id = item.mid })
+
+            }
+            else
+            {              
+                @Html.ActionLink("详情", "Details", new { id = item.mid })
+                @Html.Label("|")
+                @Html.ActionLink("删除", "Delete", new { id = item.mid })
+            }
+
+
+        </td>
+    </tr>
+}
+
+</table>

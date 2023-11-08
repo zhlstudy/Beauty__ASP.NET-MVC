@@ -1,0 +1,85 @@
+﻿@model Beautydemo.Models.tb_cart
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>修改商品数量</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>tb_cart</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.cid)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.nums, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nums, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nums, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="保存" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+
+<div>
+    @Html.ActionLink("返回", "Index")
+</div>
+<div class="form-group" style="visibility:hidden">
+    @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group" style="visibility:hidden">
+    @Html.LabelFor(model => model.pid, "pid", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.pid, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.pid, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group" style="visibility:hidden">
+    @Html.LabelFor(model => model.pname, "pid", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.pname, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.pname, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group" style="visibility:hidden">
+    @Html.LabelFor(model => model.cid, "pid", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.cid, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.cid, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group" style="visibility:hidden">
+    @Html.LabelFor(model => model.price, "pid", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group" style="visibility:hidden">
+    @Html.LabelFor(model => model.photo, "pid", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.photo, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.photo, "", new { @class = "text-danger" })
+    </div>
+</div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

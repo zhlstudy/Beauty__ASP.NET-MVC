@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BeautyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tb_admin">
+    <Key>
+      <PropertyRef Name="aid" />
+    </Key>
+    <Property Name="aid" Type="Int32" Nullable="false" />
+    <Property Name="aname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="confirmpassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tb_cart">
+    <Key>
+      <PropertyRef Name="cid" />
+    </Key>
+    <Property Name="cid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="pid" Type="Int32" Nullable="false" />
+    <Property Name="pname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="price" Type="Decimal" Precision="18" Scale="1" />
+    <Property Name="nums" Type="Int32" />
+    <Property Name="photo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tb_product" Relationship="Self.FK_tb_cart_tb_product" FromRole="tb_cart" ToRole="tb_product" />
+  </EntityType>
+  <EntityType Name="tb_message">
+    <Key>
+      <PropertyRef Name="mid" />
+    </Key>
+    <Property Name="mid" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mess" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="messdate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tb_orderdetails">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="oid" Type="Int32" />
+    <Property Name="pid" Type="Int32" />
+    <Property Name="pname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="price" Type="Decimal" Precision="18" Scale="1" />
+    <Property Name="nums" Type="Int32" />
+    <Property Name="photo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tb_orders" Relationship="Self.FK_tb_orderdetails_tb_orders" FromRole="tb_orderdetails" ToRole="tb_orders" />
+    <NavigationProperty Name="tb_product" Relationship="Self.FK_tb_orderdetails_tb_product" FromRole="tb_orderdetails" ToRole="tb_product" />
+  </EntityType>
+  <EntityType Name="tb_orders">
+    <Key>
+      <PropertyRef Name="oid" />
+    </Key>
+    <Property Name="oid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="orderTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="allPrice" Type="Decimal" Precision="18" Scale="1" />
+    <Property Name="tel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="pcounts" Type="Int32" />
+    <NavigationProperty Name="tb_orderdetails" Relationship="Self.FK_tb_orderdetails_tb_orders" FromRole="tb_orders" ToRole="tb_orderdetails" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tb_product">
+    <Key>
+      <PropertyRef Name="pid" />
+    </Key>
+    <Property Name="pid" Type="Int32" Nullable="false" />
+    <Property Name="pname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="photo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="price" Type="Decimal" Precision="18" Scale="1" />
+    <Property Name="pnums" Type="Int32" />
+    <Property Name="salenums" Type="Int32" />
+    <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mess" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tb_cart" Relationship="Self.FK_tb_cart_tb_product" FromRole="tb_product" ToRole="tb_cart" />
+    <NavigationProperty Name="tb_orderdetails" Relationship="Self.FK_tb_orderdetails_tb_product" FromRole="tb_product" ToRole="tb_orderdetails" />
+  </EntityType>
+  <EntityType Name="tb_user">
+    <Key>
+      <PropertyRef Name="uid" />
+    </Key>
+    <Property Name="uid" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="confirmpassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="emil" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_tb_cart_tb_product">
+    <End Role="tb_product" Type="Self.tb_product" Multiplicity="1" />
+    <End Role="tb_cart" Type="Self.tb_cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_product">
+        <PropertyRef Name="pid" />
+      </Principal>
+      <Dependent Role="tb_cart">
+        <PropertyRef Name="pid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_orderdetails_tb_orders">
+    <End Role="tb_orders" Type="Self.tb_orders" Multiplicity="0..1" />
+    <End Role="tb_orderdetails" Type="Self.tb_orderdetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_orders">
+        <PropertyRef Name="oid" />
+      </Principal>
+      <Dependent Role="tb_orderdetails">
+        <PropertyRef Name="oid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_orderdetails_tb_product">
+    <End Role="tb_product" Type="Self.tb_product" Multiplicity="0..1" />
+    <End Role="tb_orderdetails" Type="Self.tb_orderdetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_product">
+        <PropertyRef Name="pid" />
+      </Principal>
+      <Dependent Role="tb_orderdetails">
+        <PropertyRef Name="pid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BeautyEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="tb_admin" EntityType="Self.tb_admin" />
+    <EntitySet Name="tb_cart" EntityType="Self.tb_cart" />
+    <EntitySet Name="tb_message" EntityType="Self.tb_message" />
+    <EntitySet Name="tb_orderdetails" EntityType="Self.tb_orderdetails" />
+    <EntitySet Name="tb_orders" EntityType="Self.tb_orders" />
+    <EntitySet Name="tb_product" EntityType="Self.tb_product" />
+    <EntitySet Name="tb_user" EntityType="Self.tb_user" />
+    <AssociationSet Name="FK_tb_cart_tb_product" Association="Self.FK_tb_cart_tb_product">
+      <End Role="tb_product" EntitySet="tb_product" />
+      <End Role="tb_cart" EntitySet="tb_cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_orderdetails_tb_orders" Association="Self.FK_tb_orderdetails_tb_orders">
+      <End Role="tb_orders" EntitySet="tb_orders" />
+      <End Role="tb_orderdetails" EntitySet="tb_orderdetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_orderdetails_tb_product" Association="Self.FK_tb_orderdetails_tb_product">
+      <End Role="tb_product" EntitySet="tb_product" />
+      <End Role="tb_orderdetails" EntitySet="tb_orderdetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

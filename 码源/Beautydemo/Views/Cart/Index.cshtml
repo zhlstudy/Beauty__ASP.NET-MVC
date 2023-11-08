@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Beautydemo.Models.tb_cart>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>我的订单信息</h2>
+
+<h5>请确认后提交</h5>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nums)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tb_product.pname)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pname)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nums)
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.photo)*@
+            <img src="@item.photo" height="80px"width="100px" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tb_product.pname)
+        </td>
+        <td>
+            @Html.ActionLink("编辑", "Edit", new { id=item.cid }) |
+            @Html.ActionLink("详情", "Details", new { id=item.cid }) |
+            @Html.ActionLink("删除", "Delete", new { id=item.cid })
+        </td>
+    </tr>
+}
+    <tr>
+        <td colspan="7" style="text-align:center;">@Html.ActionLink("提交订单", "InsertOrder", "Orders")</td>
+    </tr>
+
+</table>

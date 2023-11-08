@@ -1,0 +1,57 @@
+﻿@model Beautydemo.Models.tb_orders
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>订单首页</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.orderTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.orderTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.allPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.allPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pcounts)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pcounts)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.oid }) |
+    @Html.ActionLink("返回", "Index")
+</p>

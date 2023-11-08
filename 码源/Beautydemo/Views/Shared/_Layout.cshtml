@@ -1,0 +1,79 @@
+﻿@using Beautydemo.Models;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("美妆网", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (Session["Role"] != null)
+                    {
+                        if (Session["Role"].ToString() == "admin")
+                        {
+                            <li>
+                                @Html.ActionLink("管理员：" + ((tb_admin)Session["IdInfo"]).aname,
+                        "Details", "Admin", new { id = ((tb_admin)Session["IdInfo"]).aid },"")
+                            </li>
+
+                            <li>@Html.ActionLink("用户管理", "Index", "User")</li>
+                            <li>@Html.ActionLink("评论管理", "Index", "Message")</li>                            
+                            <li>@Html.ActionLink("产品管理", "Index", "Product")</li>
+                            <li>@Html.ActionLink("订单管理", "Index", "Orders")</li>
+                            <li>@Html.ActionLink("退出登录", "LogOut", "User")</li>
+                        }
+                        else if (Session["Role"].ToString() == "user")
+                        {
+                            <li>
+                                @Html.ActionLink("会员：" + ((tb_user)Session["IdInfo"]).name,
+                        "Details", "User", new { id = ((tb_user)Session["IdInfo"]).uid },"")
+                            </li>
+                            <li>@Html.ActionLink("产品首页", "Index", "Product")</li>
+                            <li>@Html.ActionLink("我的信息", "Index", "User")</li>
+                            <li>@Html.ActionLink("我的购物车", "Index", "Cart")</li>
+                            <li>@Html.ActionLink("我的订单", "Index", "Orders")</li>
+                            <li>@Html.ActionLink("网站留言", "Index", "Message")</li>
+                            <li>@Html.ActionLink("退出登录", "LogOut", "User")</li>
+                        }
+
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("游客", "Register", "User")</li>
+                        <li>@Html.ActionLink("产品首页", "Index", "Product")</li>
+                        @*<li>@Html.ActionLink("网站留言", "Index", "Message")</li>*@
+                        <li>@Html.ActionLink("登录", "Login", "User")</li>
+                        <li>@Html.ActionLink("注册", "Register", "User")</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - 美妆网购物系统</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

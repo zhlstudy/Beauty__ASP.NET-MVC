@@ -1,0 +1,95 @@
+﻿@model Beautydemo.Models.tb_orderdetails
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>详情</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nums)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nums)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.photo)
+        </dt>
+
+        <dd>
+            <img src="@Model.photo" height="80"width="120px" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.state)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.state)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_orders.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_orders.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_product.pname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_product.pname)
+        </dd>
+
+    </dl>
+</div>
+<p>
+
+    @if (Session["Role"].ToString() == "admin")
+    {
+
+        @Html.ActionLink("返回订单", "Index", "Orders", new { id = Model.id }, "");
+    }
+    else
+    {
+        @Html.ActionLink("确认付款", "Edit", new { id = Model.id })
+        @Html.Label("|");
+        @Html.ActionLink("返回订单", "Index", "Orderdetails", new { id = Model.id }, "")
+    }
+
+
+
+
+</p>

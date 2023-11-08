@@ -1,0 +1,72 @@
+﻿@model Beautydemo.Models.tb_cart
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>删除购物中的商品</h2>
+
+<h3>确定要删除嘛?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nums)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nums)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.photo)
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.photo)*@
+            <img src="@Model.photo" height="150px"/>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_product.pname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_product.pname)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="删除" class="btn btn-default" /> |
+            @Html.ActionLink("返回", "Index")
+        </div>
+    }
+</div>

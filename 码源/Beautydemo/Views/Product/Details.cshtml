@@ -1,0 +1,83 @@
+﻿@model Beautydemo.Models.tb_product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>产品详情</h2>
+
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.photo)
+        </dt>
+
+        <dd>
+            <img src="@Model.photo" height="80" width="140"/>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pnums)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pnums)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.salenums)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.salenums)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mess)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mess)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.state)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.state)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @if (Session["Role"] != null && Session["Role"].ToString() == "admin")
+    {
+        @Html.ActionLink("编辑", "Edit", new { id = Model.pid });
+    }
+    else
+    {
+        @Html.ActionLink("加入购物车", "JoinCart", "Cart", new { id = Model.pid }, "");
+        @Html.Label("|");
+        @Html.ActionLink("返回首页", "Index");
+    }
+
+</p>
